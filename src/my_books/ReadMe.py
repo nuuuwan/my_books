@@ -17,7 +17,9 @@ class ReadMe:
             dewey_prefix = book.dewey_prefix
             if dewey_prefix != previous_dewey_prefix:
                 ddc_details = DDC.get(dewey_prefix)
-                lines.extend(['', f'## {dewey_prefix}', '', f'`{ddc_details}`', ''])
+                lines.extend(
+                    ['', f'## {dewey_prefix}', '', f'`{ddc_details}`', '']
+                )
                 previous_dewey_prefix = dewey_prefix
             lines.append(book.readme_line)
 
