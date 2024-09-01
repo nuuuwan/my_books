@@ -1,4 +1,5 @@
 import os
+import random
 from dataclasses import dataclass
 
 from utils import CSVFile, Log
@@ -42,6 +43,17 @@ class Book:
     def list_all():
         data_list = CSVFile(Book.DATA_PATH).read()
         book_list = [Book.from_dict(data) for data in data_list]
+        book_list = Book.sort_list(book_list)
+
         n = len(book_list)
         log.info(f'Loaded {n} books from {Book.DATA_PATH}')
         return book_list
+
+    @staticmethod
+    def sort_list(books):
+        return sorted(books, key=lambda b: (b.dewey, b.author, b.title))
+
+    @staticmethod
+    def list_random(n):
+        books = Book.list_all()
+        return Book.sort_list(random.sample(books, n))

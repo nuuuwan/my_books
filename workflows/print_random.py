@@ -1,14 +1,20 @@
-import random
 from my_books import Book
 
 
 def main():
-    books = Book.list_all()
-    random.shuffle(books)
+    print()
+    print('-' * 80)
+    print()
+    
     N = 10
-    for book in books[:N]:
+    random_books = Book.list_random(N)
+    for book in random_books:
         print(book.readme_line)
-
+    
+    print()
+    print('-' * 80)
+    print()
+    
 
 if __name__ == "__main__":
     main()
